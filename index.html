@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				width: 800px;
+				height: 500px;
+				margin: 0 auto;
+				border: 3px solid green;
+				margin-top: 100px;
+				position: relative;
+			}
+			.tiaotiao{
+				width: 50px;
+				height: 50px;
+				background-color: red;
+				border-radius: 50%;
+				position: absolute;
+				left: 100px;
+				top: 100px;
+		
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			
+		</div>
+		<script type="text/javascript">
+			function Qiuqiu(speedX,speedY,time,left,top){
+				this.dom=document.createElement("div");
+				this.dom.className="tiaotiao";
+				box.appendChild(this.dom);
+				this.box=document.getElementById("box");
+				this.speedX=speedX;
+				this.speedY=speedY;
+				this.left=Math.random()*500;
+				this.top=Math.random()*300;
+				this.dom.style.left=this.left+"px";
+				this.dom.style.top=this.top+"px";
+				this.time=time;
+				this.pao();
+			}
+			Qiuqiu.prototype.pao=function(){
+				var self=this;
+				setInterval(function(){
+					self.lf=self.dom.offsetLeft+self.speedX;//球距盒子左边的距离
+					self.tp=self.dom.offsetTop+self.speedY;
+					if(self.lf>=self.box.clientWidth-self.dom.offsetWidth){
+						self.speedX*=-1;
+						self.lf=self.box.clientWidth-self.dom.offsetWidth;
+					}else if(self.lf<=0){
+						self.speedX*=-1;
+					}
+					if(self.tp>=self.box.clientHeight-self.dom.offsetHeight){
+						self.speedY*=-1;
+						self.speedX*=1;
+						self.top=self.box.clientHeight-self.dom.offsetHeight;
+					}else if(self.tp<=0){
+						self.speedY*=-1;
+						self.speedX*=1;
+					}else{
+					self.dom.style.left=self.lf+"px";
+					self.dom.style.top=self.tp+"px";
+					}
+				},self.time)
+				
+			    
+			}
+		new Qiuqiu(18,18,60,(Math.random()*500),(Math.random()*300));
+		new Qiuqiu(22,22,50,(Math.random()*500),(Math.random()*300));
+		new Qiuqiu(15,20,40,(Math.random()*500),(Math.random()*300));
+		new Qiuqiu(20,10,30,(Math.random()*500),(Math.random()*300));
+		new Qiuqiu(25,20,35,(Math.random()*500),(Math.random()*300));
+console.log(box.offsetLeft);//距离window的距离
+console.log(box.offsetWidth);//总宽度包括边框
+console.log(box.clientWidth);//总宽度不包括边框
+
+
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>
